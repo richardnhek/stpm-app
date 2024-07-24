@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "974642028810",
+    "project_id": "stpmnewsapp",
+    "storage_bucket": "stpmnewsapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974642028810:android:ec92c3dac15e9dcbf75af3",
+        "android_client_info": {
+          "package_name": "com.stpm.newsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974642028810-gti7cjp2gsu08necjbk58bqlh5i2e01b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stpm.newsapp",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "974642028810-i4i3o1lsjrubrv3eqe2nhbe56jd73nq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO92RsWH6a3PdHNnuFEZSUq_9OLi-nqiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974642028810-i4i3o1lsjrubrv3eqe2nhbe56jd73nq1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "974642028810-ef7ckvfn6bhth5v56h3osik3vhk5980t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stpm.newsapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
