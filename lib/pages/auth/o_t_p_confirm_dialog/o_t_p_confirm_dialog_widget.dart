@@ -306,8 +306,12 @@ class _OTPConfirmDialogWidgetState extends State<OTPConfirmDialogWidget>
                                             if (_model.supabaseExistingUser
                                                     ?.first?.isProfileCreated ==
                                                 true) {
+                                              Navigator.pop(context);
+
                                               context.goNamed('HomePage');
                                             } else {
+                                              Navigator.pop(context);
+
                                               context
                                                   .goNamed('EditProfileRefine');
                                             }
@@ -329,6 +333,8 @@ class _OTPConfirmDialogWidgetState extends State<OTPConfirmDialogWidget>
                                             _shouldSetState = true;
                                             if (_model.createdUserFromPhone !=
                                                 null) {
+                                              Navigator.pop(context);
+
                                               context
                                                   .goNamed('EditProfileRefine');
                                             }
