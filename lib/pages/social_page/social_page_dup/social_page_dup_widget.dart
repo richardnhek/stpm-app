@@ -121,6 +121,16 @@ class _SocialPageDupWidgetState extends State<SocialPageDupWidget>
                 onPressed: () async {
                   context.pushNamed(
                     'createPost',
+                    queryParameters: {
+                      'postOwner': serializeParam(
+                        null,
+                        ParamType.String,
+                      ),
+                      'postId': serializeParam(
+                        null,
+                        ParamType.int,
+                      ),
+                    }.withoutNulls,
                     extra: <String, dynamic>{
                       kTransitionInfoKey: TransitionInfo(
                         hasTransition: true,

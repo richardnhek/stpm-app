@@ -19,8 +19,8 @@ export 'create_post_model.dart';
 class CreatePostWidget extends StatefulWidget {
   const CreatePostWidget({
     super.key,
-    this.postOwner,
-    this.postId,
+    required this.postOwner,
+    required this.postId,
   });
 
   final String? postOwner;
@@ -1705,9 +1705,9 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                           'created_at': supaSerialize<DateTime>(
                                               getCurrentTimestamp),
                                           'title':
-                                              _model.titleTextController1.text,
+                                              _model.titleTextController2.text,
                                           'description': _model
-                                              .posDescriptionTextController1
+                                              .posDescriptionTextController2
                                               .text,
                                           'contents': _model.uploadedFileUrl2 ==
                                                       null ||
@@ -1715,7 +1715,6 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                               ? containerPostsRow?.contents
                                               : _model.uploadedFileUrl2,
                                           'post_owner': widget!.postOwner,
-                                          'id': widget!.postId,
                                         },
                                         matchingRows: (rows) => rows.eq(
                                           'id',

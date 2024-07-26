@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -45,12 +46,17 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<List<PostsRow>>(
-      future: FFAppState().allPostsQueryCache(
+      future: FFAppState()
+          .allPostsQueryCache(
         overrideCache: !loggedIn,
         requestFn: () => PostsTable().queryRows(
           queryFn: (q) => q.order('created_at'),
         ),
-      ),
+      )
+          .then((result) {
+        _model.requestCompleted = true;
+        return result;
+      }),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -84,6 +90,16 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                 onPressed: () async {
                   context.pushNamed(
                     'createPost',
+                    queryParameters: {
+                      'postOwner': serializeParam(
+                        null,
+                        ParamType.String,
+                      ),
+                      'postId': serializeParam(
+                        null,
+                        ParamType.int,
+                      ),
+                    }.withoutNulls,
                     extra: <String, dynamic>{
                       kTransitionInfoKey: TransitionInfo(
                         hasTransition: true,
@@ -178,7 +194,14 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                         final listofPost = socialPagePostsRowList.toList();
 
                         return RefreshIndicator(
-                          onRefresh: () async {},
+                          onRefresh: () async {
+                            setState(() {
+                              FFAppState().clearAllPostsQueryCacheCache();
+                              _model.requestCompleted = false;
+                            });
+                            await _model.waitForRequestCompleted(
+                                minWait: 200, maxWait: 5000);
+                          },
                           child: ListView.separated(
                             padding: EdgeInsets.zero,
                             shrinkWrap: true,

@@ -147,21 +147,7 @@ class _MoreAboutPostWidgetState extends State<MoreAboutPostWidget>
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(
-                              'createPost',
-                              queryParameters: {
-                                'postOwner': serializeParam(
-                                  widget!.postOwner,
-                                  ParamType.String,
-                                ),
-                                'postId': serializeParam(
-                                  widget!.postID,
-                                  ParamType.int,
-                                ),
-                              }.withoutNulls,
-                            );
-                          },
+                          onTap: () async {},
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
