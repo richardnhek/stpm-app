@@ -4,9 +4,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/auth/o_t_p_confirm_dialog/o_t_p_confirm_dialog_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'phone_auth_page_model.dart';
@@ -217,7 +221,7 @@ class _PhoneAuthPageWidgetState extends State<PhoneAuthPageWidget> {
                           children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 20.0),
+                                  16.0, 0.0, 16.0, 20.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -231,10 +235,11 @@ class _PhoneAuthPageWidgetState extends State<PhoneAuthPageWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      AutoSizeText(
                                         FFLocalizations.of(context).getText(
                                           '3emzc1sd' /* សម្តេចមហាបវរធិបតី ហ៊ុន ម៉ាណែត */,
                                         ),
+                                        minFontSize: 10.0,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -248,10 +253,11 @@ class _PhoneAuthPageWidgetState extends State<PhoneAuthPageWidget> {
                                                       .containsKey('Moulpali'),
                                             ),
                                       ),
-                                      Text(
+                                      AutoSizeText(
                                         FFLocalizations.of(context).getText(
                                           'kbi62bzl' /* នាយករដ្ឋមន្ត្រី នៃព្រះរាជាណាចក... */,
                                         ),
+                                        minFontSize: 9.0,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -271,194 +277,225 @@ class _PhoneAuthPageWidgetState extends State<PhoneAuthPageWidget> {
                                 ].divide(SizedBox(width: 10.0)),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 30.0, 0.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Form(
-                                    key: _model.formKey,
-                                    autovalidateMode: AutovalidateMode.disabled,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 15.0),
-                                          child: Container(
-                                            width: 300.0,
-                                            height: 50.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFE0E0E0),
-                                              borderRadius:
-                                                  BorderRadius.circular(25.0),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      20.0, 0.0, 20.0, 0.0),
-                                              child: TextFormField(
-                                                controller:
-                                                    _model.textController,
-                                                focusNode:
-                                                    _model.textFieldFocusNode,
-                                                autofocus: true,
-                                                obscureText: false,
-                                                decoration: InputDecoration(
-                                                  hintText: FFLocalizations.of(
-                                                          context)
-                                                      .getText(
-                                                    '38wnk1hn' /* Phone Number */,
-                                                  ),
-                                                  hintStyle:
-                                                      GoogleFonts.getFont(
-                                                    'Open Sans',
-                                                    color: Color(0x7F455A64),
-                                                  ),
-                                                  enabledBorder:
-                                                      InputBorder.none,
-                                                  focusedBorder:
-                                                      InputBorder.none,
-                                                  errorBorder: InputBorder.none,
-                                                  focusedErrorBorder:
-                                                      InputBorder.none,
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                validator: _model
-                                                    .textControllerValidator
-                                                    .asValidator(context),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Builder(
-                                    builder: (context) => Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 15.0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          await actions.supabasePhoneAuth(
-                                            _model.textController.text,
-                                          );
-                                          await showDialog(
-                                            barrierDismissible: false,
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child: OTPConfirmDialogWidget(
-                                                    phone: _model
-                                                        .textController.text,
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          ).then((value) => setState(() {}));
-                                        },
-                                        text:
-                                            FFLocalizations.of(context).getText(
-                                          'x4ci03qz' /* Send Code */,
-                                        ),
-                                        options: FFButtonOptions(
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Form(
+                                  key: _model.formKey,
+                                  autovalidateMode: AutovalidateMode.disabled,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 15.0),
+                                        child: Container(
                                           width: 300.0,
                                           height: 50.0,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 24.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .titleSmall
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily,
-                                                color: Colors.white,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmallFamily),
-                                              ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFE0E0E0),
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20.0, 0.0, 20.0, 0.0),
+                                            child: TextFormField(
+                                              controller: _model.textController,
+                                              focusNode:
+                                                  _model.textFieldFocusNode,
+                                              onChanged: (_) =>
+                                                  EasyDebounce.debounce(
+                                                '_model.textController',
+                                                Duration(milliseconds: 100),
+                                                () => setState(() {}),
+                                              ),
+                                              autofocus: true,
+                                              autofillHints: [
+                                                AutofillHints.telephoneNumber
+                                              ],
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                hintText:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  '38wnk1hn' /* Phone Number */,
+                                                ),
+                                                hintStyle: GoogleFonts.getFont(
+                                                  'Open Sans',
+                                                  color: Color(0x7F455A64),
+                                                ),
+                                                enabledBorder: InputBorder.none,
+                                                focusedBorder: InputBorder.none,
+                                                errorBorder: InputBorder.none,
+                                                focusedErrorBorder:
+                                                    InputBorder.none,
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                              maxLength: 16,
+                                              maxLengthEnforcement:
+                                                  MaxLengthEnforcement.enforced,
+                                              buildCounter: (context,
+                                                      {required currentLength,
+                                                      required isFocused,
+                                                      maxLength}) =>
+                                                  null,
+                                              keyboardType: TextInputType.phone,
+                                              validator: _model
+                                                  .textControllerValidator
+                                                  .asValidator(context),
+                                              inputFormatters: [
+                                                _model.textFieldMask
+                                              ],
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                  Padding(
+                                ),
+                                Builder(
+                                  builder: (context) => Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 8.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        context.goNamed('CreateAccountPage');
-                                      },
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'trco3e8k' /* or */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
+                                        0.0, 0.0, 0.0, 15.0),
+                                    child: FFButtonWidget(
+                                      onPressed: (_model
+                                                  .textController.text.length <
+                                              15)
+                                          ? null
+                                          : () async {
+                                              await actions.supabasePhoneAuth(
+                                                (String rawPhoneNo) {
+                                                  return rawPhoneNo.replaceAll(
+                                                      ' ', '');
+                                                }(_model.textController.text),
+                                              );
+                                              await showDialog(
+                                                barrierDismissible: false,
+                                                context: context,
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child: WebViewAware(
+                                                      child:
+                                                          OTPConfirmDialogWidget(
+                                                        phoneNo: (String
+                                                            rawPhoneNo) {
+                                                          return rawPhoneNo
+                                                              .replaceAll(
+                                                                  ' ', '');
+                                                        }(_model.textController
+                                                            .text),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then(
+                                                  (value) => setState(() {}));
+                                            },
+                                      text: FFLocalizations.of(context).getText(
+                                        'x4ci03qz' /* Send Code */,
+                                      ),
+                                      options: FFButtonOptions(
+                                        width: 300.0,
+                                        height: 50.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
                                             .override(
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
+                                                      .titleSmallFamily,
+                                              color: Colors.white,
                                               letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
                                             ),
+                                        elevation: 3.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                        disabledColor:
+                                            FlutterFlowTheme.of(context)
+                                                .tertiary,
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.goNamed('CreateAccountPage');
+                                    },
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'trco3e8k' /* or */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLargeFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             if (responsiveVisibility(
                               context: context,

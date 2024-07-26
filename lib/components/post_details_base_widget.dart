@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'dart:math';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -248,6 +249,7 @@ class _PostDetailsBaseWidgetState extends State<PostDetailsBaseWidget>
         final containerPostsRow = containerPostsRowList.isNotEmpty
             ? containerPostsRowList.first
             : null;
+
         return Container(
           width: double.infinity,
           constraints: BoxConstraints(
@@ -485,6 +487,7 @@ class _PostDetailsBaseWidgetState extends State<PostDetailsBaseWidget>
                                 userInfoWhitelistUsersRowList.isNotEmpty
                                     ? userInfoWhitelistUsersRowList.first
                                     : null;
+
                             return InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -876,13 +879,12 @@ class _PostDetailsBaseWidgetState extends State<PostDetailsBaseWidget>
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                if (false)
-                                  Icon(
-                                    Icons.ios_share,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
-                                  ),
+                                Icon(
+                                  Icons.ios_share,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 24.0,
+                                ),
                               ],
                             ),
                           ],
@@ -1033,6 +1035,7 @@ class _PostDetailsBaseWidgetState extends State<PostDetailsBaseWidget>
                                                               ? whitelistCommentWhitelistUsersRowList
                                                                   .first
                                                               : null;
+
                                                       return Container(
                                                         width: double.infinity,
                                                         decoration:
@@ -1203,10 +1206,9 @@ class _PostDetailsBaseWidgetState extends State<PostDetailsBaseWidget>
                                                                                     ),
                                                                                   ),
                                                                                   Text(
-                                                                                    dateTimeFormat(
-                                                                                      'jm',
-                                                                                      containerVarItem.createdAt,
-                                                                                      locale: FFLocalizations.of(context).languageCode,
+                                                                                    valueOrDefault<String>(
+                                                                                      functions.dateConvention(containerVarItem.createdAt.toString()),
+                                                                                      '0',
                                                                                     ),
                                                                                     style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                           fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,
@@ -1347,6 +1349,7 @@ class _PostDetailsBaseWidgetState extends State<PostDetailsBaseWidget>
                                                               ? commentUsersRowList
                                                                   .first
                                                               : null;
+
                                                       return Container(
                                                         width: double.infinity,
                                                         decoration:
@@ -1481,10 +1484,9 @@ class _PostDetailsBaseWidgetState extends State<PostDetailsBaseWidget>
                                                                                   ),
                                                                                 ),
                                                                                 Text(
-                                                                                  dateTimeFormat(
-                                                                                    'jm',
-                                                                                    commentUsersRow!.createdAt,
-                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  valueOrDefault<String>(
+                                                                                    functions.dateConvention(containerVarItem.createdAt.toString()),
+                                                                                    '0',
                                                                                   ),
                                                                                   style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).labelSmallFamily,

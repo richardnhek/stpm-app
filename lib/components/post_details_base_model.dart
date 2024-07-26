@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'dart:math';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'post_details_base_widget.dart' show PostDetailsBaseWidget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

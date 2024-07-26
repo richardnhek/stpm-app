@@ -12,6 +12,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'social_page_dup_model.dart';
@@ -189,7 +190,7 @@ class _SocialPageDupWidgetState extends State<SocialPageDupWidget>
                                 GoRouter.of(context).clearRedirectLocation();
 
                                 context.goNamedAuth(
-                                    'LoginPage', context.mounted);
+                                    'PhoneAuthPage', context.mounted);
                               },
                               child: Text(
                                 FFLocalizations.of(context).getText(
@@ -273,6 +274,7 @@ class _SocialPageDupWidgetState extends State<SocialPageDupWidget>
                                     userPostWhitelistUsersRowList.isNotEmpty
                                         ? userPostWhitelistUsersRowList.first
                                         : null;
+
                                 return Container(
                                   width: double.infinity,
                                   constraints: BoxConstraints(

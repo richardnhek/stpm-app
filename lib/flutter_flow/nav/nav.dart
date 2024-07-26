@@ -82,13 +82,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : PhoneAuthPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : PhoneAuthPageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -206,7 +206,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'createPost',
           path: '/createPost',
-          builder: (context, params) => CreatePostWidget(),
+          builder: (context, params) => CreatePostWidget(
+            postOwner: params.getParam(
+              'postOwner',
+              ParamType.String,
+            ),
+            postId: params.getParam(
+              'postId',
+              ParamType.int,
+            ),
+          ),
         ),
         FFRoute(
           name: 'SuccessfulCreatePost',
@@ -412,7 +421,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/loginPage';
+            return '/phoneAuthPage';
           }
           return null;
         },

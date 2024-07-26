@@ -41,13 +41,13 @@ class _EmptyNewsComponentWidgetState extends State<EmptyNewsComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
           Icons.newspaper_rounded,
           color: FlutterFlowTheme.of(context).primary,
-          size: 72.0,
+          size: 56.0,
         ),
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
@@ -58,6 +58,7 @@ class _EmptyNewsComponentWidgetState extends State<EmptyNewsComponentWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
                   color: FlutterFlowTheme.of(context).primary,
+                  fontSize: 18.0,
                   letterSpacing: 0.0,
                   useGoogleFonts: GoogleFonts.asMap().containsKey(
                       FlutterFlowTheme.of(context).headlineMediumFamily),

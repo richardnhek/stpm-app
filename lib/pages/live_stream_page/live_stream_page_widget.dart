@@ -123,266 +123,80 @@ class _LiveStreamPageWidgetState extends State<LiveStreamPageWidget> {
                 ],
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
-                    child: FutureBuilder<ApiCallResponse>(
-                      future: FFAppState().liveStreamVideoQuery(
-                        requestFn: () =>
-                            STPMAPICallGroupGroup.sTPMGetSiteConfigCall.call(
-                          publicKey: FFAppState().publicKey,
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 10.0, 10.0, 0.0),
+                        child: FutureBuilder<ApiCallResponse>(
+                          future: FFAppState().liveStreamVideoQuery(
+                            requestFn: () => STPMAPICallGroupGroup
+                                .sTPMGetSiteConfigCall
+                                .call(
+                              publicKey: FFAppState().publicKey,
+                            ),
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                            final liveStreamPlayerSTPMGetSiteConfigResponse =
+                                snapshot.data!;
+
+                            return Container(
+                              width: double.infinity,
+                              height: 300.0,
+                              child: custom_widgets.LiveStreamPlayer(
+                                width: double.infinity,
+                                height: 300.0,
+                                videoUrl: getJsonField(
+                                  liveStreamPlayerSTPMGetSiteConfigResponse
+                                      .jsonBody,
+                                  r'''$.data.attributes.mainVideo''',
+                                ).toString(),
+                              ),
+                            );
+                          },
                         ),
                       ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                        final liveStreamPlayerSTPMGetSiteConfigResponse =
-                            snapshot.data!;
-
-                        return Container(
-                          width: double.infinity,
-                          height: 300.0,
-                          child: custom_widgets.LiveStreamPlayer(
-                            width: double.infinity,
-                            height: 300.0,
-                            videoUrl: getJsonField(
-                              liveStreamPlayerSTPMGetSiteConfigResponse
-                                  .jsonBody,
-                              r'''$.data.attributes.mainVideo''',
-                            ).toString(),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(18.0, 30.0, 18.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  'n033e8sh' /* Follow Us */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await launchURL(
-                                          'https://www.facebook.com/Dr.Hunmanetofcambodia');
-                                    },
-                                    child: FaIcon(
-                                      FontAwesomeIcons.facebookF,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await launchURL(
-                                          'https://www.youtube.com/@Dr.Hunmanetofcambodia');
-                                    },
-                                    child: FaIcon(
-                                      FontAwesomeIcons.youtube,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await launchURL(
-                                          'https://twitter.com/Dr_Hunmanet_PM');
-                                    },
-                                    child: FaIcon(
-                                      FontAwesomeIcons.twitter,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await launchURL(
-                                          'https://t.me/Dr_Hunmanetofcambodia');
-                                    },
-                                    child: FaIcon(
-                                      FontAwesomeIcons.telegramPlane,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await launchURL(
-                                          'https://www.tiktok.com/@dr.hunmanetofcambodia');
-                                    },
-                                    child: FaIcon(
-                                      FontAwesomeIcons.tiktok,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await launchURL(
-                                          'https://www.instagram.com/dr.hunmanetofcambodia/');
-                                    },
-                                    child: FaIcon(
-                                      FontAwesomeIcons.instagram,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Divider(
-                                thickness: 2.0,
-                                color: FlutterFlowTheme.of(context).accent4,
-                              ),
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  'slzmwis5' /* Contact */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Icon(
-                                    Icons.email_rounded,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 21.0,
-                                  ),
-                                  Text(
-                                    FFLocalizations.of(context).getText(
-                                      'gwwup8zj' /* info@co-army.com */,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily),
-                                        ),
-                                  ),
-                                ].divide(SizedBox(width: 10.0)),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.location_on_rounded,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 21.0,
-                                  ),
-                                  Expanded(
-                                    child: Text(
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            18.0, 30.0, 18.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 16.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
                                       FFLocalizations.of(context).getText(
-                                        'kf52dc1j' /* No SD0001 Street 2004 Ta Nguon... */,
+                                        'n033e8sh' /* Follow Us */,
                                       ),
-                                      textAlign: TextAlign.justify,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -391,24 +205,232 @@ class _LiveStreamPageWidgetState extends State<LiveStreamPageWidget> {
                                                     .bodyMediumFamily,
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
+                                            fontSize: 18.0,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.w600,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMediumFamily),
                                           ),
                                     ),
-                                  ),
-                                ].divide(SizedBox(width: 10.0)),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await launchURL(
+                                                'https://www.facebook.com/Dr.Hunmanetofcambodia');
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.facebookF,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await launchURL(
+                                                'https://www.youtube.com/@Dr.Hunmanetofcambodia');
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.youtube,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await launchURL(
+                                                'https://twitter.com/Dr_Hunmanet_PM');
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.twitter,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await launchURL(
+                                                'https://t.me/Dr_Hunmanetofcambodia');
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.telegramPlane,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await launchURL(
+                                                'https://www.tiktok.com/@dr.hunmanetofcambodia');
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.tiktok,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await launchURL(
+                                                'https://www.instagram.com/dr.hunmanetofcambodia/');
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.instagram,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Divider(
+                                      thickness: 2.0,
+                                      color:
+                                          FlutterFlowTheme.of(context).accent4,
+                                    ),
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        'slzmwis5' /* Contact */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Icon(
+                                          Icons.email_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 21.0,
+                                        ),
+                                        Text(
+                                          FFLocalizations.of(context).getText(
+                                            'gwwup8zj' /* info@co-army.com */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                        ),
+                                      ].divide(SizedBox(width: 10.0)),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.location_on_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 21.0,
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'kf52dc1j' /* No SD0001 Street 2004 Ta Nguon... */,
+                                            ),
+                                            textAlign: TextAlign.justify,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
+                                          ),
+                                        ),
+                                      ].divide(SizedBox(width: 10.0)),
+                                    ),
+                                  ].divide(SizedBox(height: 16.0)),
+                                ),
                               ),
-                            ].divide(SizedBox(height: 15.0)),
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ],

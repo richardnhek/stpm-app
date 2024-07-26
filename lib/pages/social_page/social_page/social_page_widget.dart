@@ -1,12 +1,13 @@
 import '/auth/base_auth_user_provider.dart';
 import '/backend/supabase/supabase.dart';
 import '/component/user_post_component/user_post_component_widget.dart';
+import '/components/post_shimmer_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'social_page_model.dart';
@@ -174,8 +175,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                   Expanded(
                     child: Builder(
                       builder: (context) {
-                        final listofPost =
-                            socialPagePostsRowList.toList().take(10).toList();
+                        final listofPost = socialPagePostsRowList.toList();
 
                         return RefreshIndicator(
                           onRefresh: () async {},
@@ -210,17 +210,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 40.0,
-                                        height: 40.0,
-                                        child: SpinKitPulse(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 40.0,
-                                        ),
-                                      ),
-                                    );
+                                    return PostShimmerComponentWidget();
                                   }
                                   List<WhitelistUsersRow>
                                       userPostComponentWhitelistUsersRowList =
@@ -232,6 +222,7 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                                           ? userPostComponentWhitelistUsersRowList
                                               .first
                                           : null;
+
                                   return wrapWithModel(
                                     model:
                                         _model.userPostComponentModels.getModel(
@@ -267,12 +258,8 @@ class _SocialPageWidgetState extends State<SocialPageWidget> {
                                       postOwnerId: listofPostItem.postOwner!,
                                       postImg: listofPostItem.contents,
                                       postId: listofPostItem.id,
-                                      publishedDate: dateTimeFormat(
-                                        'yMMMd',
-                                        listofPostItem.createdAt,
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
-                                      ),
+                                      publishedDate: functions.dateConvention(
+                                          listofPostItem.createdAt.toString())!,
                                       postTitle: valueOrDefault<String>(
                                         listofPostItem.title,
                                         'Title',

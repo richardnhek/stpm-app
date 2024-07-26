@@ -1,5 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/more_about_post_widget.dart';
+import '/components/post_shimmer_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -14,6 +16,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class UserPostComponentModel extends FlutterFlowModel<UserPostComponentWidget> {
   ///  Local state fields for this component.
@@ -27,6 +30,8 @@ class UserPostComponentModel extends FlutterFlowModel<UserPostComponentWidget> {
   int numOfComments = 0;
 
   bool isComment = false;
+
+  bool isLoaded = true;
 
   ///  State fields for stateful widgets in this component.
 
@@ -46,10 +51,17 @@ class UserPostComponentModel extends FlutterFlowModel<UserPostComponentWidget> {
   List<LikesRow>? deleteLikeRowWhitelistCopy;
   // Stores action output result for [Backend Call - Delete Row(s)] action in liked widget.
   List<LikesRow>? deleteLikeRowUserCopy;
+  // Model for PostShimmerComponent component.
+  late PostShimmerComponentModel postShimmerComponentModel;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    postShimmerComponentModel =
+        createModel(context, () => PostShimmerComponentModel());
+  }
 
   @override
-  void dispose() {}
+  void dispose() {
+    postShimmerComponentModel.dispose();
+  }
 }

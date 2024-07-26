@@ -1,15 +1,16 @@
 import '/auth/base_auth_user_provider.dart';
 import '/backend/supabase/supabase.dart';
 import '/component/user_post_component/user_post_component_widget.dart';
+import '/components/post_shimmer_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import '/flutter_flow/request_manager.dart';
 
 import 'social_page_widget.dart' show SocialPageWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 

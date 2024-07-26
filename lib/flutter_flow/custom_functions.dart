@@ -31,3 +31,25 @@ bool hasUploadedMedia(String? mediaPath) {
 bool checkNullData(DataStruct? thisData) {
   return thisData == null;
 }
+
+String? dateConvention(String dateString) {
+  final DateTime postDate = DateTime.parse(dateString);
+  final DateTime currentDate = DateTime.now();
+  final Duration difference = currentDate.difference(postDate);
+
+  if (difference.inSeconds < 60) {
+    return 'Just now';
+  } else if (difference.inMinutes < 60) {
+    return '${difference.inMinutes} min${difference.inMinutes > 1 ? 's' : ''} ago';
+  } else if (difference.inHours < 24) {
+    return '${difference.inHours} hour${difference.inHours > 1 ? 's' : ''} ago';
+  } else if (difference.inDays < 7) {
+    return '${difference.inDays} day${difference.inDays > 1 ? 's' : ''} ago';
+  } else if (difference.inDays < 30) {
+    return '${(difference.inDays / 7).floor()} week${(difference.inDays / 7).floor() > 1 ? 's' : ''} ago';
+  } else if (difference.inDays < 365) {
+    return '${(difference.inDays / 30).floor()} month${(difference.inDays / 30).floor() > 1 ? 's' : ''} ago';
+  } else {
+    return '${(difference.inDays / 365).floor()} year${(difference.inDays / 365).floor() > 1 ? 's' : ''} ago';
+  }
+}

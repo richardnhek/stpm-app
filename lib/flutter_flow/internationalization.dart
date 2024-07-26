@@ -137,7 +137,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'na343fpe': {
       'en': 'Home',
-      'km': 'ទំព័រដើម',
+      'km': 'Home',
     },
   },
   // LoginPage
@@ -155,7 +155,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'km': 'សម្តេចមហាបវរធិបតី ហ៊ុន ម៉ាណែត',
     },
     'fzik6dkq': {
-      'en': 'នាយករដ្ឋមន្ត្រីនៃព្រះរាជាណាចក្រកម្ពុជា',
+      'en': 'នាយករដ្ឋមន្ត្រី នៃព្រះរាជាណាចក្រកម្ពុជា',
       'km': 'នាយករដ្ឋមន្ត្រី នៃព្រះរាជាណាចក្រកម្ពុជា',
     },
     'cau522dr': {
@@ -171,7 +171,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'km': 'ចូលដោយប្រើអ៊ីមែល',
     },
     'd6x5wzwk': {
-      'en': 'Create Google Account',
+      'en': 'Create Account',
       'km': 'បង្កើតគណនី',
     },
     'qaed6y4n': {
@@ -386,8 +386,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'km': 'ព័ត៌មានរបស់ខ្ញុំ',
     },
     '5zepnghm': {
-      'en': '__',
-      'km': '__',
+      'en': 'Account',
+      'km': 'Account',
     },
   },
   // VideoPage
@@ -454,24 +454,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'n033e8sh': {
       'en': 'Follow Us',
-      'km': '',
+      'km': 'តាមដាន​ពួក​យើង',
     },
     'slzmwis5': {
       'en': 'Contact',
-      'km': '',
+      'km': 'ទំនាក់ទំនង',
     },
     'gwwup8zj': {
       'en': 'info@co-army.com',
-      'km': '',
+      'km': 'info@co-army.com',
     },
     'kf52dc1j': {
       'en':
           'No SD0001 Street 2004 Ta Nguon 1 Village Sangkat Kakab 1 Khan Pur Senchey 120912 Phnom Penh',
-      'km': '',
+      'km':
+          ' SD0001 ផ្លូវ 2004 ភូមិ តាងួន 1 សង្កាត់ កាកាប 1 ខណ្ឌ ពោធិ៍សែនជ័យ 120912 ភ្នំពេញ',
     },
     '66pkn06c': {
-      'en': 'Home',
-      'km': 'ទំព័រដើម',
+      'en': 'LiveStream',
+      'km': 'LiveStream',
     },
   },
   // SocialPageDup
@@ -509,8 +510,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'km': 'រូបថត',
     },
     'ckpiu1dm': {
-      'en': 'Home',
-      'km': 'ទំព័រដើម',
+      'en': 'Media',
+      'km': 'Media',
     },
   },
   // PublicProfile
@@ -573,6 +574,34 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Create Post',
       'km': 'បង្កើតមាតិការ',
     },
+    '8hsa4ex6': {
+      'en': 'Create Post',
+      'km': '',
+    },
+    '4ge0ii4t': {
+      'en': 'Please upload an image or video',
+      'km': '',
+    },
+    'nokuyvhf': {
+      'en': 'Put your Title and Description Below',
+      'km': '',
+    },
+    'ya58dio1': {
+      'en': 'Title',
+      'km': '',
+    },
+    'm72d18wb': {
+      'en': 'Post Description...',
+      'km': '',
+    },
+    'c29e4gkm': {
+      'en': '',
+      'km': '',
+    },
+    'ujch2q3p': {
+      'en': 'Update Post',
+      'km': '',
+    },
     'tqvfxqc0': {
       'en': 'Home',
       'km': 'ទំព័រដើម',
@@ -605,7 +634,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'koys8cif': {
       'en': 'Social',
-      'km': 'បណ្ដាញសង្គម',
+      'km': 'Social',
     },
   },
   // EditProfileRefine
@@ -623,8 +652,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'km': 'សម្តេចមហាបវរធិបតី ហ៊ុន ម៉ាណែត',
     },
     'ebu8h5mo': {
-      'en': 'នាយករដ្ឋមន្ត្រីនៃព្រះរាជាណាចក្រកម្ពុជា',
-      'km': 'នាយករដ្ឋមន្ត្រីនៃព្រះរាជាណាចក្រកម្ពុជា',
+      'en': 'នាយករដ្ឋមន្ត្រី នៃព្រះរាជាណាចក្រកម្ពុជា',
+      'km': 'នាយករដ្ឋមន្ត្រី នៃព្រះរាជាណាចក្រកម្ពុជា',
     },
     'yevpstiy': {
       'en': 'First Name',
@@ -754,7 +783,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ebu8h5mo': {
       'en': 'នាយករដ្ឋមន្ត្រី នៃព្រះរាជាណាចក្រកម្ពុជា',
-      'km': 'នាយករដ្ឋមន្ត្រីនៃព្រះរាជាណាចក្រកម្ពុជា',
+      'km': 'នាយករដ្ឋមន្ត្រី នៃព្រះរាជាណាចក្រកម្ពុជា',
     },
     'oijf8zsm': {
       'en': 'Enter your PIN below',
@@ -786,20 +815,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'n033e8sh': {
       'en': 'Follow Us',
-      'km': '',
+      'km': 'តាមដាន​ពួក​យើង',
     },
     'slzmwis5': {
       'en': 'Contact',
-      'km': '',
+      'km': 'ទំនាក់ទំនង',
     },
     'gwwup8zj': {
       'en': 'info@co-army.com',
-      'km': '',
+      'km': 'info@co-army.com',
     },
     'kf52dc1j': {
       'en':
           'No SD0001 Street 2004 Ta Nguon 1 Village Sangkat Kakab 1 Khan Pur Senchey 120912 Phnom Penh',
-      'km': '',
+      'km':
+          ' SD0001 ផ្លូវ 2004 ភូមិ តាងួន 1 សង្កាត់ កាកាប 1 ខណ្ឌ ពោធិ៍សែនជ័យ 120912 ភ្នំពេញ',
     },
     '2z75k1ri': {
       'en': 'Home',
@@ -908,11 +938,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your PIN below',
       'km': 'បញ្ចូលកូដ PIN របស់អ្នកខាងក្រោម',
     },
-    'vsjvitmq': {
-      'en': 'Your project has been created, now invite your team to continue.',
-      'km':
-          'គម្រោងរបស់អ្នកត្រូវបានបង្កើត ឥឡូវនេះសូមអញ្ជើញក្រុមរបស់អ្នកឱ្យបន្ត។',
-    },
     'dybipwmt': {
       'en': 'Cancel',
       'km': 'បោះបង់',
@@ -940,6 +965,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lz1uwwa6': {
       'en': 'Verify Code',
       'km': 'ផ្ទៀងផ្ទាត់លេខកូដ',
+    },
+  },
+  // MoreAboutPost
+  {
+    'xzn98mo1': {
+      'en': 'Options',
+      'km': '',
+    },
+    '42spf4t1': {
+      'en': 'Edit',
+      'km': '',
+    },
+    '7svav97o': {
+      'en': 'Share',
+      'km': '',
+    },
+    'lfdxx21u': {
+      'en': 'Delete',
+      'km': '',
     },
   },
   // Miscellaneous

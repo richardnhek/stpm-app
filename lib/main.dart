@@ -179,7 +179,7 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 21.0,
             ),
             label: FFLocalizations.of(context).getText(
-              '66pkn06c' /* Home */,
+              '66pkn06c' /* LiveStream */,
             ),
             tooltip: '',
           ),
@@ -193,7 +193,7 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 26.0,
             ),
             label: FFLocalizations.of(context).getText(
-              'ckpiu1dm' /* Home */,
+              'ckpiu1dm' /* Media */,
             ),
             tooltip: '',
           ),
@@ -217,7 +217,7 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: FFLocalizations.of(context).getText(
-              '5zepnghm' /* __ */,
+              '5zepnghm' /* Account */,
             ),
             tooltip: '',
           )

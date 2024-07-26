@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -243,7 +244,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       ),
                                       AutoSizeText(
                                         FFLocalizations.of(context).getText(
-                                          'fzik6dkq' /* នាយករដ្ឋមន្ត្រីនៃព្រះរាជាណាចក្... */,
+                                          'fzik6dkq' /* នាយករដ្ឋមន្ត្រី នៃព្រះរាជាណាចក... */,
                                         ),
                                         minFontSize: 10.0,
                                         style: FlutterFlowTheme.of(context)
@@ -284,6 +285,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       child: TextFormField(
                                         controller: _model.emailTextController,
                                         focusNode: _model.textFieldFocusNode1,
+                                        onChanged: (_) => EasyDebounce.debounce(
+                                          '_model.emailTextController',
+                                          Duration(milliseconds: 100),
+                                          () => setState(() {}),
+                                        ),
+                                        autofillHints: [AutofillHints.email],
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           hintText: FFLocalizations.of(context)
@@ -349,6 +356,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           color: Color(0xFF455A64),
                                           fontWeight: FontWeight.normal,
                                         ),
+                                        keyboardType:
+                                            TextInputType.emailAddress,
                                         validator: _model
                                             .emailTextControllerValidator
                                             .asValidator(context),
@@ -373,6 +382,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         controller:
                                             _model.passwordTextController,
                                         focusNode: _model.textFieldFocusNode2,
+                                        onChanged: (_) => EasyDebounce.debounce(
+                                          '_model.passwordTextController',
+                                          Duration(milliseconds: 100),
+                                          () => setState(() {}),
+                                        ),
+                                        autofillHints: [AutofillHints.password],
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
                                           hintText: FFLocalizations.of(context)
@@ -420,22 +435,37 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 18.0),
                                   child: FFButtonWidget(
-                                    onPressed: () async {
-                                      GoRouter.of(context).prepareAuthEvent();
+                                    onPressed: ((_model.emailTextController
+                                                        .text ==
+                                                    null ||
+                                                _model.emailTextController
+                                                        .text ==
+                                                    '') ||
+                                            (_model.passwordTextController
+                                                        .text ==
+                                                    null ||
+                                                _model.passwordTextController
+                                                        .text ==
+                                                    ''))
+                                        ? null
+                                        : () async {
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
 
-                                      final user =
-                                          await authManager.signInWithEmail(
-                                        context,
-                                        _model.emailTextController.text,
-                                        _model.passwordTextController.text,
-                                      );
-                                      if (user == null) {
-                                        return;
-                                      }
+                                            final user = await authManager
+                                                .signInWithEmail(
+                                              context,
+                                              _model.emailTextController.text,
+                                              _model
+                                                  .passwordTextController.text,
+                                            );
+                                            if (user == null) {
+                                              return;
+                                            }
 
-                                      context.goNamedAuth(
-                                          'HomePage', context.mounted);
-                                    },
+                                            context.goNamedAuth(
+                                                'HomePage', context.mounted);
+                                          },
                                     text: FFLocalizations.of(context).getText(
                                       '7ql55x8s' /* Sign in with email */,
                                     ),
@@ -461,6 +491,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         width: 0.0,
                                       ),
                                       borderRadius: BorderRadius.circular(25.0),
+                                      disabledColor:
+                                          FlutterFlowTheme.of(context).tertiary,
                                     ),
                                   ),
                                 ),
@@ -477,7 +509,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     },
                                     child: Text(
                                       FFLocalizations.of(context).getText(
-                                        'd6x5wzwk' /* Create Google Account */,
+                                        'd6x5wzwk' /* Create Account */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -487,7 +519,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     .bodyMediumFamily,
                                             color: Color(0xFF1F1F1F),
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.w600,
                                             decoration:
                                                 TextDecoration.underline,
                                             useGoogleFonts: GoogleFonts.asMap()
@@ -535,7 +567,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: FFButtonWidget(
-                                  onPressed: () async {},
+                                  onPressed: () {
+                                    print('Button pressed ...');
+                                  },
                                   text: FFLocalizations.of(context).getText(
                                     'kss7goon' /* Sign in with Apple */,
                                   ),

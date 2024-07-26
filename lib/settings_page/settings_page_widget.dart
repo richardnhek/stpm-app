@@ -111,6 +111,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   final columnUsersRow = columnUsersRowList.isNotEmpty
                       ? columnUsersRowList.first
                       : null;
+
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -914,6 +915,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       columnWhitelistUsersRowList.isNotEmpty
                           ? columnWhitelistUsersRowList.first
                           : null;
+
                   return Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,

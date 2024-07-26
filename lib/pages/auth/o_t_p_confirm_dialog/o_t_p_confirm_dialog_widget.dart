@@ -18,10 +18,10 @@ export 'o_t_p_confirm_dialog_model.dart';
 class OTPConfirmDialogWidget extends StatefulWidget {
   const OTPConfirmDialogWidget({
     super.key,
-    required this.phone,
+    required this.phoneNo,
   });
 
-  final String? phone;
+  final String? phoneNo;
 
   @override
   State<OTPConfirmDialogWidget> createState() => _OTPConfirmDialogWidgetState();
@@ -146,9 +146,7 @@ class _OTPConfirmDialogWidgetState extends State<OTPConfirmDialogWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 24.0, 0.0),
                       child: Text(
-                        FFLocalizations.of(context).getText(
-                          'vsjvitmq' /* Your project has been created,... */,
-                        ),
+                        'Please enter the code sent to ${widget!.phoneNo}',
                         style:
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: 'Plus Jakarta Sans',
@@ -185,7 +183,7 @@ class _OTPConfirmDialogWidgetState extends State<OTPConfirmDialogWidget>
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey('Plus Jakarta Sans'),
                                   ),
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               enableActiveFill: false,
                               autoFocus: true,
                               enablePinAutofill: true,
@@ -193,7 +191,8 @@ class _OTPConfirmDialogWidgetState extends State<OTPConfirmDialogWidget>
                               showCursor: true,
                               cursorColor: Color(0xFF6F61EF),
                               obscureText: false,
-                              hintCharacter: '-',
+                              hintCharacter: '*',
+                              keyboardType: TextInputType.number,
                               pinTheme: PinTheme(
                                 fieldHeight: 50.0,
                                 fieldWidth: 44.0,
@@ -280,7 +279,7 @@ class _OTPConfirmDialogWidgetState extends State<OTPConfirmDialogWidget>
                                       _model.isSuccessOTPConfirmation =
                                           await actions.confirmOtp(
                                         _model.pinCodeController!.text,
-                                        widget!.phone!,
+                                        widget!.phoneNo!,
                                       );
                                       _shouldSetState = true;
                                       if (_model.isSuccessOTPConfirmation ==
@@ -321,7 +320,7 @@ class _OTPConfirmDialogWidgetState extends State<OTPConfirmDialogWidget>
                                                 await UsersTable().insert({
                                               'id': _model
                                                   .phoneAuthCurrentUserUid,
-                                              'phone_number': widget!.phone,
+                                              'phone_number': widget!.phoneNo,
                                               'created_at':
                                                   supaSerialize<DateTime>(
                                                       getCurrentTimestamp),
@@ -411,7 +410,7 @@ class _OTPConfirmDialogWidgetState extends State<OTPConfirmDialogWidget>
                                                 .containsKey(
                                                     'Plus Jakarta Sans'),
                                           ),
-                                      elevation: 3.0,
+                                      elevation: 0.0,
                                       borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,

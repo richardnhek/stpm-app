@@ -232,6 +232,7 @@ class _EditProfileRefineWidgetState extends State<EditProfileRefineWidget>
             editProfileRefineUsersRowList.isNotEmpty
                 ? editProfileRefineUsersRowList.first
                 : null;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -468,7 +469,7 @@ class _EditProfileRefineWidgetState extends State<EditProfileRefineWidget>
                                         ),
                                         AutoSizeText(
                                           FFLocalizations.of(context).getText(
-                                            'ebu8h5mo' /* នាយករដ្ឋមន្ត្រីនៃព្រះរាជាណាចក្... */,
+                                            'ebu8h5mo' /* នាយករដ្ឋមន្ត្រី នៃព្រះរាជាណាចក... */,
                                           ),
                                           minFontSize: 10.0,
                                           style: FlutterFlowTheme.of(context)
@@ -500,240 +501,227 @@ class _EditProfileRefineWidgetState extends State<EditProfileRefineWidget>
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 20.0, 0.0, 15.0),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                final selectedMedia =
-                                                    await selectMediaWithSourceBottomSheet(
-                                                  context: context,
-                                                  storageFolderPath:
-                                                      'profile_pic',
-                                                  imageQuality: 80,
-                                                  allowPhoto: true,
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                  textColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  pickerFontFamily: 'Outfit',
-                                                );
-                                                if (selectedMedia != null &&
-                                                    selectedMedia.every((m) =>
-                                                        validateFileFormat(
-                                                            m.storagePath,
-                                                            context))) {
-                                                  setState(() => _model
-                                                      .isDataUploading = true);
-                                                  var selectedUploadedFiles =
-                                                      <FFUploadedFile>[];
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 20.0, 0.0, 15.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              final selectedMedia =
+                                                  await selectMediaWithSourceBottomSheet(
+                                                context: context,
+                                                storageFolderPath:
+                                                    'profile_pic',
+                                                imageQuality: 80,
+                                                allowPhoto: true,
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                textColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                pickerFontFamily: 'Outfit',
+                                              );
+                                              if (selectedMedia != null &&
+                                                  selectedMedia.every((m) =>
+                                                      validateFileFormat(
+                                                          m.storagePath,
+                                                          context))) {
+                                                setState(() => _model
+                                                    .isDataUploading = true);
+                                                var selectedUploadedFiles =
+                                                    <FFUploadedFile>[];
 
-                                                  var downloadUrls = <String>[];
-                                                  try {
-                                                    showUploadMessage(
-                                                      context,
-                                                      'Uploading file...',
-                                                      showLoading: true,
-                                                    );
-                                                    selectedUploadedFiles =
-                                                        selectedMedia
-                                                            .map((m) =>
-                                                                FFUploadedFile(
-                                                                  name: m
-                                                                      .storagePath
-                                                                      .split(
-                                                                          '/')
-                                                                      .last,
-                                                                  bytes:
-                                                                      m.bytes,
-                                                                  height: m
-                                                                      .dimensions
-                                                                      ?.height,
-                                                                  width: m
-                                                                      .dimensions
-                                                                      ?.width,
-                                                                  blurHash: m
-                                                                      .blurHash,
-                                                                ))
-                                                            .toList();
+                                                var downloadUrls = <String>[];
+                                                try {
+                                                  showUploadMessage(
+                                                    context,
+                                                    'Uploading file...',
+                                                    showLoading: true,
+                                                  );
+                                                  selectedUploadedFiles =
+                                                      selectedMedia
+                                                          .map((m) =>
+                                                              FFUploadedFile(
+                                                                name: m
+                                                                    .storagePath
+                                                                    .split('/')
+                                                                    .last,
+                                                                bytes: m.bytes,
+                                                                height: m
+                                                                    .dimensions
+                                                                    ?.height,
+                                                                width: m
+                                                                    .dimensions
+                                                                    ?.width,
+                                                                blurHash:
+                                                                    m.blurHash,
+                                                              ))
+                                                          .toList();
 
-                                                    downloadUrls =
-                                                        await uploadSupabaseStorageFiles(
-                                                      bucketName:
-                                                          'profile_image',
-                                                      selectedFiles:
-                                                          selectedMedia,
-                                                    );
-                                                  } finally {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .hideCurrentSnackBar();
-                                                    _model.isDataUploading =
-                                                        false;
-                                                  }
-                                                  if (selectedUploadedFiles
-                                                              .length ==
-                                                          selectedMedia
-                                                              .length &&
-                                                      downloadUrls.length ==
-                                                          selectedMedia
-                                                              .length) {
-                                                    setState(() {
-                                                      _model.uploadedLocalFile =
-                                                          selectedUploadedFiles
-                                                              .first;
-                                                      _model.uploadedFileUrl =
-                                                          downloadUrls.first;
-                                                    });
-                                                    showUploadMessage(
-                                                        context, 'Success!');
-                                                  } else {
-                                                    setState(() {});
-                                                    showUploadMessage(context,
-                                                        'Failed to upload data');
-                                                    return;
-                                                  }
+                                                  downloadUrls =
+                                                      await uploadSupabaseStorageFiles(
+                                                    bucketName: 'profile_image',
+                                                    selectedFiles:
+                                                        selectedMedia,
+                                                  );
+                                                } finally {
+                                                  ScaffoldMessenger.of(context)
+                                                      .hideCurrentSnackBar();
+                                                  _model.isDataUploading =
+                                                      false;
                                                 }
+                                                if (selectedUploadedFiles
+                                                            .length ==
+                                                        selectedMedia.length &&
+                                                    downloadUrls.length ==
+                                                        selectedMedia.length) {
+                                                  setState(() {
+                                                    _model.uploadedLocalFile =
+                                                        selectedUploadedFiles
+                                                            .first;
+                                                    _model.uploadedFileUrl =
+                                                        downloadUrls.first;
+                                                  });
+                                                  showUploadMessage(
+                                                      context, 'Success!');
+                                                } else {
+                                                  setState(() {});
+                                                  showUploadMessage(context,
+                                                      'Failed to upload data');
+                                                  return;
+                                                }
+                                              }
 
-                                                _model.image =
-                                                    _model.uploadedFileUrl;
-                                                setState(() {});
-                                                _model.isChange = true;
-                                                setState(() {});
-                                              },
-                                              child: Container(
-                                                width: 105.0,
-                                                height: 105.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBackground,
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: Image.asset(
-                                                      'assets/images/photo-1500648767791-00dcc994a43e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                                                    ).image,
-                                                  ),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 4.0,
-                                                      color: Color(0x33000000),
-                                                      offset: Offset(
-                                                        0.0,
-                                                        2.0,
+                                              _model.image =
+                                                  _model.uploadedFileUrl;
+                                              setState(() {});
+                                              _model.isChange = true;
+                                              setState(() {});
+                                            },
+                                            child: Container(
+                                              width: 105.0,
+                                              height: 105.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    blurRadius: 4.0,
+                                                    color: Color(0x33000000),
+                                                    offset: Offset(
+                                                      0.0,
+                                                      2.0,
+                                                    ),
+                                                  )
+                                                ],
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Stack(
+                                                children: [
+                                                  if (editProfileRefineUsersRow
+                                                          ?.isProfileCreated ==
+                                                      false)
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          if (_model.uploadedFileUrl ==
+                                                                  null ||
+                                                              _model.uploadedFileUrl ==
+                                                                  '') {
+                                                            return Icon(
+                                                              Icons
+                                                                  .person_sharp,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .tertiary,
+                                                              size: 45.0,
+                                                            );
+                                                          } else {
+                                                            return ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          45.0),
+                                                              child:
+                                                                  CachedNetworkImage(
+                                                                fadeInDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            500),
+                                                                fadeOutDuration:
+                                                                    Duration(
+                                                                        milliseconds:
+                                                                            500),
+                                                                imageUrl: _model
+                                                                    .image!,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                            );
+                                                          }
+                                                        },
                                                       ),
-                                                    )
-                                                  ],
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Stack(
-                                                  children: [
-                                                    if (editProfileRefineUsersRow
-                                                            ?.isProfileCreated ==
-                                                        false)
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Builder(
-                                                          builder: (context) {
-                                                            if (_model.uploadedFileUrl ==
-                                                                    null ||
-                                                                _model.uploadedFileUrl ==
-                                                                    '') {
-                                                              return Icon(
-                                                                Icons
-                                                                    .person_sharp,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .tertiary,
-                                                                size: 45.0,
-                                                              );
-                                                            } else {
-                                                              return ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            45.0),
-                                                                child: Image
-                                                                    .network(
-                                                                  _model.image!,
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                ),
-                                                              );
-                                                            }
-                                                          },
-                                                        ),
+                                                    ),
+                                                  if ((editProfileRefineUsersRow
+                                                              ?.isProfileCreated ==
+                                                          true) &&
+                                                      (_model.image == null ||
+                                                          _model.image == ''))
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50.0),
+                                                      child: CachedNetworkImage(
+                                                        fadeInDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        fadeOutDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        imageUrl:
+                                                            editProfileRefineUsersRow!
+                                                                .photoUrl!,
+                                                        width: 300.0,
+                                                        height: 200.0,
+                                                        fit: BoxFit.cover,
                                                       ),
-                                                    if ((editProfileRefineUsersRow
-                                                                ?.isProfileCreated ==
-                                                            true) &&
-                                                        (_model.image == null ||
-                                                            _model.image == ''))
-                                                      ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50.0),
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          fadeInDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      500),
-                                                          fadeOutDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      500),
-                                                          imageUrl:
-                                                              editProfileRefineUsersRow!
-                                                                  .photoUrl!,
-                                                          width: 300.0,
-                                                          height: 200.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
+                                                    ),
+                                                  if ((editProfileRefineUsersRow
+                                                              ?.isProfileCreated ==
+                                                          true) &&
+                                                      (_model.image != null &&
+                                                          _model.image != ''))
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50.0),
+                                                      child: CachedNetworkImage(
+                                                        fadeInDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        fadeOutDuration:
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500),
+                                                        imageUrl: _model.image!,
+                                                        width: 300.0,
+                                                        height: 200.0,
+                                                        fit: BoxFit.cover,
                                                       ),
-                                                    if ((editProfileRefineUsersRow
-                                                                ?.isProfileCreated ==
-                                                            true) &&
-                                                        (_model.image != null &&
-                                                            _model.image != ''))
-                                                      ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50.0),
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          fadeInDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      500),
-                                                          fadeOutDuration:
-                                                              Duration(
-                                                                  milliseconds:
-                                                                      500),
-                                                          imageUrl:
-                                                              _model.image!,
-                                                          width: 300.0,
-                                                          height: 200.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                  ],
-                                                ),
+                                                    ),
+                                                ],
                                               ),
                                             ),
                                           ),

@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -82,6 +83,7 @@ class _PublicProfileWidgetState extends State<PublicProfileWidget> {
             publicProfileWhitelistUsersRowList.isNotEmpty
                 ? publicProfileWhitelistUsersRowList.first
                 : null;
+
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -424,6 +426,7 @@ class _PublicProfileWidgetState extends State<PublicProfileWidget> {
                                                             ? userPostComponentWhitelistUsersRowList
                                                                 .first
                                                             : null;
+
                                                     return wrapWithModel(
                                                       model: _model
                                                           .userPostComponentModels
@@ -466,14 +469,13 @@ class _PublicProfileWidgetState extends State<PublicProfileWidget> {
                                                             .contents,
                                                         postId: postListItem.id,
                                                         publishedDate:
-                                                            dateTimeFormat(
-                                                          'yMMMd',
-                                                          postListItem
-                                                              .createdAt,
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
+                                                            valueOrDefault<
+                                                                String>(
+                                                          functions.dateConvention(
+                                                              postListItem
+                                                                  .createdAt
+                                                                  .toString()),
+                                                          '0',
                                                         ),
                                                         postTitle:
                                                             valueOrDefault<
