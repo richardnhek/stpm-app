@@ -1,7 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/more_about_post_widget.dart';
-import '/components/post_shimmer_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -51,17 +50,10 @@ class UserPostComponentModel extends FlutterFlowModel<UserPostComponentWidget> {
   List<LikesRow>? deleteLikeRowWhitelistCopy;
   // Stores action output result for [Backend Call - Delete Row(s)] action in liked widget.
   List<LikesRow>? deleteLikeRowUserCopy;
-  // Model for PostShimmerComponent component.
-  late PostShimmerComponentModel postShimmerComponentModel;
 
   @override
-  void initState(BuildContext context) {
-    postShimmerComponentModel =
-        createModel(context, () => PostShimmerComponentModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    postShimmerComponentModel.dispose();
-  }
+  void dispose() {}
 }
